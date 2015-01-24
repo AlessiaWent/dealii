@@ -43,4 +43,4 @@ http://www.dealii.org.
 Continuous Integration Status:
 ------------------------
 
-[![Build Status](https://travis-ci.org/dealii/dealii.png)](https://travis-ci.org/dealii/dealii)
+[![Build Status](https://travis-ci.org/luca-heltai/dealii.svg?branch=master)](https://travis-ci.org/luca-heltai/dealii)
