@@ -3534,37 +3534,10 @@ namespace
   {
     const unsigned int structdim = TriaIterator::AccessorType::structure_dimension;
 
-    // Try backward compatibility option.
-    if (const Boundary<dim,spacedim> *boundary
-        = dynamic_cast<const Boundary<dim,spacedim> *>(&manifold))
-      // This is actually a boundary. Call old methods.
-      {
-        switch (structdim)
-          {
-          case 1:
-          {
-            const typename Triangulation<dim,spacedim>::line_iterator line = iter;
-            boundary->get_intermediate_points_on_line(line, points);
-            return;
-          }
-          case 2:
-          {
-            const typename Triangulation<dim,spacedim>::quad_iterator quad = iter;
-            boundary->get_intermediate_points_on_quad(quad, points);
-            return;
-          }
-          default:
-            Assert(false, ExcInternalError());
-            return;
-          }
-      }
-    else
-      {
-        std::vector<Point<spacedim> > sp(GeometryInfo<structdim>::vertices_per_cell);
-        for (unsigned int i=0; i<sp.size(); ++i)
-          sp[i] = iter->vertex(i);
-        get_intermediate_points(manifold, line_support_points, sp, points);
-      }
+    std::vector<Point<spacedim> > sp(GeometryInfo<structdim>::vertices_per_cell);
+    for (unsigned int i=0; i<sp.size(); ++i)
+      sp[i] = iter->vertex(i);
+    get_intermediate_points(manifold, line_support_points, sp, points);
   }
 
 
